@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link href="/css/dashboard.css" rel="stylesheet"> 
+  </head>
+  <body>
+    <div class="header-container">
+      <%- include('header') %>
+    </div>
+    <div class="container content-container">
+      <div class="box">
+          <div class="user-details">
+            <h3>Welcome!</h3>
+              <p><strong>Hey </strong> <%= user.username %>!</p>
+              <p><strong>Your email is </strong> <%= user.email %></p>
+              <p><strong>Last login:</strong> <%= user.lastLogin %></p>
+          </div>
+      </div>
+    
+      <div class="box">
+          <div class="weather-info">
+              <h3>Weather in <%= weather.city %>:</h3>
+              <p>Temp: <%= weather.temperature %>°C</p>
+              <p>Feels like: <%= weather.feelsLike %>°C</p>
+              <p> The sky: <%= weather.description %></p>
+          </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="service-updates">
+          <h3>Updates:</h3>
+          <% serviceUpdates.forEach(function(update) { %>
+              <p><%= update %></p>
+          <% }); %>
+      </div>
+  </div>
+</div>
+
+  </body>
+  </html>
+  
+  
+  
+  
+

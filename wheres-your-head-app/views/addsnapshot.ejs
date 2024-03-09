@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Snapshot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/addsnap.css" /> 
+</head>
+<body>
+    <div class="header-container">
+      <%- include('header') %>
+    </div>
+    <div class="container content-container">
+      <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+      <div class="alert alert-danger">
+        <% errors.forEach(function(error) { %>
+        <p><%= error.msg %></p>
+        <% }); %>
+      </div>
+      <% } %>
+      <div class="form-box"> 
+        <h1>Add a Snap</h1>
+        <form id="add-snapshot-form" action="/snaps/add" method="post">
+          <div class="form-group">
+              <label for="enjoyment_level">Enjoyment</label>
+              <input type="range" id="enjoyment_level" name="enjoyment_level" min="0" max="100" oninput="this.nextElementSibling.value = this.value" />
+              <output>50</output>
+          </div>
+          <div class="form-group">
+              <label for="sadness_level">Sadness</label>
+              <input type="range" id="sadness_level" name="sadness_level" min="0" max="100" oninput="this.nextElementSibling.value = this.value" />
+              <output>50</output>
+          </div>
+          <div class="form-group">
+              <label for="anger_level">Anger</label>
+              <input type="range" id="anger_level" name="anger_level" min="0" max="100" oninput="this.nextElementSibling.value = this.value" />
+              <output>50</output>
+          </div>
+          <div class="form-group">
+              <label for="contempt_level">Contempt</label>
+              <input type="range" id="contempt_level" name="contempt_level" min="0" max="100" oninput="this.nextElementSibling.value = this.value" />
+              <output>50</output>
+          </div>
+          <div class="form-group">
+              <label for="disgust_level">Disgust</label>
+              <input type="range" id="disgust_level" name="disgust_level" min="0" max="100" oninput="this.nextElementSibling.value = this.value" />
+              <output>50</output>
+          </div>
+          <div class="form-group">
+              <label for="fear_level">Fear</label>
+              <input type="range" id="fear_level" name="fear_level" min="0" max="100" oninput="this.nextElementSibling.value = this.value" />
+              <output>50</output>
+          </div>
+          <div class="form-group">
+              <label for="surprise_level">Surprise</label>
+              <input type="range" id="surprise_level" name="surprise_level" min="0" max="100" oninput="this.nextElementSibling.value = this.value" />
+              <output>50</output>
+          </div>
+          <div class="form-group">
+              <label for="contextual_triggers">For context, was there anything that triggered you?</label>
+              <textarea id="contextual_triggers" name="contextual_triggers"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-light-turquoise">Add Snapshot</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="/js/addsnaphandler.js"></script>
+</body>
+</html>

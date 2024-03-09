@@ -1,0 +1,42 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-image: url('/images/forest.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f5f5dc;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+
+a, a:hover, a:focus {
+    color: #adff2f !important;
+}
+
+.btn-custom {
+    background-color: transparent;
+    border: none;
+    color: #adff2f;
+    font-size: 60px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    padding: 15px 30px;
+    border-radius: 30px;
+    transition: transform 0.2s;
+}
+
+.btn-custom:hover {
+    color: #9acd32 !important;
+    transform: scale(1.1);
+}
+
+.page-title {
+    font-size: 8vw;
+    font-family: 'Pacifico', cursive;
+}
+
+@media (max-width: 600px) {
+    .page-title {
+        font-size: 7vw;
+    }
+}

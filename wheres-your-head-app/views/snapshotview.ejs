@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Snapshots</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link href="/css/styles.css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="container">
+      <h1 class="mt-4">Your Snapshots</h1>
+      <% if (snapshots && snapshots.length > 0) { %>
+      <div class="table-responsive">
+        <table class="table table-striped mt-4">
+          <thead>
+            <tr>
+              <th>Enjoyment</th>
+              <th>Sadness</th>
+              <th>Anger</th>
+              <th>Contempt</th>
+              <th>Disgust</th>
+              <th>Fear</th>
+              <th>Surprise</th>
+              <th>Created At</th>
+              <th>Last Updated</th>
+              <th>Contextual Triggers</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% snapshots.forEach(function(snapshot) { %>
+            <tr>
+              <td><%= snapshot.enjoyment_level %></td>
+              <td><%= snapshot.sadness_level %></td>
+              <td><%= snapshot.anger_level %></td>
+              <td><%= snapshot.contempt_level %></td>
+              <td><%= snapshot.disgust_level %></td>
+              <td><%= snapshot.fear_level %></td>
+              <td><%= snapshot.surprise_level %></td>
+              <td><%= snapshot.snap_created %></td>
+              <td><%= snapshot.snap_updated %></td>
+              <td><%= snapshot.contextual_triggers %></td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm"
+                  data-toggle="modal"
+                  data-target="#editModal<%= snapshot.snapshot_id %>"
+                >
+                  Edit
+                </button>
+                <form id="delete-snapshot"
+                  action="/snaps/delete/<%= snapshot.snapshot_id %>"
+                  method="POST"
+                >
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <button
+                    type="submit"
+                    class="btn btn-danger my-2 btn-sm delete-snapshot"
+                  >
+                    Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <div
+              class="modal fade"
+              id="editModal<%= snapshot.snapshot_id %>"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="editModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">
+                      Edit Contextual Triggers
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form
+                    action="/snaps/update/<%= snapshot.snapshot_id %>"
+                    method="post"
+                  >
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="contextual_triggers"
+                          >Contextual Triggers:</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="contextual_triggers"
+                          name="contextual_triggers"
+                          value="<%= snapshot.contextual_triggers %>"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary">
+                        Save changes
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <% } else { %>
+      <p class="mt-4">No snapshots found, please click 'add' on the top right of the screen to add one.</p>
+      <% } %>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script type="module" src="/js/deletesnaphandler.js"></script>
+  </body>
+</html>

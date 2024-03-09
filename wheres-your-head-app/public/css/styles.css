@@ -1,0 +1,50 @@
+
+.title-success-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+#success-message {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+
+
+.btn-custom {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 60px;
+    font-family: 'Comfortaa', cursive;
+    padding: 15px 30px;
+    border-radius: 30px;
+    transition: transform 0.2s;
+}
+
+.btn-custom:hover {
+    transform: scale(1.1);
+}
+
+.page-title {
+    font-size: 8vw;
+    font-family: 'Pacifico', cursive;
+  }
+  
+  @media (max-width: 600px) {
+    .page-title {
+      font-size: 7vw;
+    }
+  }
+
+

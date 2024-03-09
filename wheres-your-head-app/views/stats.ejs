@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Emotion Trends</title>
+    <link rel="stylesheet" type="text/css" href="/css/chartstyles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="container">
+      <div
+        style="display: flex; flex-wrap: nowrap; justify-content: space-around"
+      >
+        <% if (mostEnjoyableDay && mostEnjoyableDay.average_enjoyment != null) {
+        %>
+        <div
+          class="card text-white bg-primary mb-3"
+          style="flex: 1; min-width: 0; max-width: 30%"
+        >
+          <div class="card-body">
+            <p class="card-text">
+              You most enjoyed <%= new
+              Date(mostEnjoyableDay.date).toLocaleDateString() %> with an
+              average of <%=
+              Number(mostEnjoyableDay.average_enjoyment).toFixed(2) %>
+            </p>
+          </div>
+        </div>
+        <% } else { %>
+        <% } %>
+        
+        <% if (mostSurprisingDay && mostSurprisingDay.average_surprise
+        != null) { %>
+        <div
+          class="card text-white bg-success mb-3"
+          style="flex: 1; min-width: 0; max-width: 30%"
+        >
+          <div class="card-body">
+            <p class="card-text">
+              Your most surprising day was <%= new
+              Date(mostSurprisingDay.date).toLocaleDateString() %> with an
+              average of <%=
+              Number(mostSurprisingDay.average_surprise).toFixed(2) %>
+            </p>
+          </div>
+        </div>
+        <% } else { %>
+        <p><%= noDataMessage %> </p>
+        <% } %> <% if (mostSadDay && mostSadDay.average_sadness != null) { %>
+        <div
+          class="card text-white bg-info mb-3"
+          style="flex: 1; min-width: 0; max-width: 30%"
+        >
+          <div class="card-body">
+            <p class="card-text">
+              Your saddest day was <%= new
+              Date(mostSadDay.date).toLocaleDateString() %> with an average of
+              <%= Number(mostSadDay.average_sadness).toFixed(2) %>
+            </p>
+          </div>
+        </div>
+        <% } else { %>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="timeframe-selection my-3 d-flex justify-content-center">
+        <button id="viewDay" class="btn btn-primary mx-1">Day</button>
+        <button id="viewWeek" class="btn btn-warning mx-1">Week</button>
+        <button id="viewMonth" class="btn btn-success mx-1">Month</button>
+        <button id="viewYear" class="btn btn-info mx-1">Year</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="chart-container">
+       <canvas id="emotionChart" width="300" height="200"></canvas>
+      </div> 
+
+      </div>
+      <script>
+        window.appData = {
+            emotionLevels: <%- JSON.stringify(emotionLevels) %>,
+            dates: <%- JSON.stringify(dates) %>
+        };
+    </script>
+    <script src="/js/chartHandler.js"></script>
+
+  </body>
+</html>
